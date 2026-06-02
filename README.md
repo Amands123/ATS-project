@@ -1,42 +1,272 @@
-_# ATS Gemini Pro
+# ATS Gemini Pro 🚀
 
-Part 1 AWS Ubuntu EC2 instance:
-Launch a new EC2 instance
-Ubuntu Server 20.04 LTS
-Allowing essential port i.e 8501
+ATS Gemini Pro is an AI-powered Applicant Tracking System (ATS) Resume Analyzer built using Streamlit and Google Gemini AI. The application helps job seekers evaluate their resumes against job descriptions, identify missing skills and keywords, generate ATS match scores, create cover letters, and prepare for interviews.
 
-Part-2 Application installation 
-Step-1 update & Install Python 3.7+ and pip
+## Features
 
-sudo -i
-sudo apt update && sudo apt install python3 python3-pip python3-venv -y
+* 📄 Resume Analysis against Job Descriptions
+* 🎯 ATS Match Score Calculation
+* 🔍 Missing Keywords Identification
+* 💡 Resume Optimization Suggestions
+* 📝 AI-Generated Cover Letters
+* 🎤 Interview Question Generation
+* 📊 Detailed ATS Evaluation Report
+* 📥 PDF Report Download
+* ☁️ Deployable on AWS EC2
+* 🤖 Powered by Google Gemini 2.5 Flash
 
-Step-2  Install Git  sudo apt install git -y
-Step-3 Install Poppler (for pdf2image)
-       sudo apt install poppler-utils -y
-Step-4 Set Up a Virtual Environment
- python3 -m venv venv
- source venv/bin/activate
+---
 
-Step-5 Install Project Dependencies
- pip install --upgrade pip
- pip install -r requirements.txt
+## Architecture
 
-AWS + GCP + AI ATS System
+AWS EC2 (Ubuntu) hosts the Streamlit application while Google Gemini AI provides the intelligence for resume evaluation and content generation.
 
-Part 3 AI Gemini Setup 
+```text
+User
+  │
+  ▼
+AWS EC2 (Streamlit Application)
+  │
+  ▼
+Google Gemini AI (Gemini 2.5 Flash)
+  │
+  ▼
+ATS Analysis Results
+```
 
-Get Gemini API Key from Google AI Studio
+---
 
-Part-4 Connect AWS ATS application with GCP Gemini AI
- 
-1.Add the API Key to Streamlit Secrets
+## Prerequisites
+
+* AWS EC2 Ubuntu Server (20.04 or later)
+* Python 3.10+
+* Git
+* Google Gemini API Key
+* Poppler Utilities
+
+---
+
+## AWS EC2 Setup
+
+### Step 1: Launch EC2 Instance
+
+Create an Ubuntu EC2 instance and ensure the following inbound ports are open:
+
+| Port | Protocol | Purpose               |
+| ---- | -------- | --------------------- |
+| 22   | TCP      | SSH Access            |
+| 8501 | TCP      | Streamlit Application |
+
+---
+
+### Step 2: Update System Packages
+
+```bash
+sudo apt update && sudo apt upgrade -y
+```
+
+---
+
+### Step 3: Install Python and Virtual Environment
+
+```bash
+sudo apt install python3 python3-pip python3-venv -y
+```
+
+Verify installation:
+
+```bash
+python3 --version
+pip3 --version
+```
+
+---
+
+### Step 4: Install Git
+
+```bash
+sudo apt install git -y
+```
+
+Verify:
+
+```bash
+git --version
+```
+
+---
+
+### Step 5: Install Poppler
+
+Required for PDF processing.
+
+```bash
+sudo apt install poppler-utils -y
+```
+
+Verify:
+
+```bash
+pdftotext -v
+```
+
+---
+
+## Clone Repository
+
+```bash
+git clone https://github.com/<your-github-username>/ATS_Gemini_Pro.git
+
+cd ATS_Gemini_Pro
+```
+
+---
+
+## Create Virtual Environment
+
+```bash
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+---
+
+## Install Dependencies
+
+```bash
+pip install --upgrade pip
+
+pip install -r requirements.txt
+```
+
+---
+
+## Google Gemini AI Setup
+
+### Step 1: Generate API Key
+
+Create a Gemini API key from Google AI Studio:
+
+https://aistudio.google.com/apikey
+
+---
+
+### Step 2: Configure Streamlit Secrets
+
+Create the directory:
+
+```bash
 mkdir -p .streamlit
+```
+
+Create the secrets file:
+
+```bash
 vi .streamlit/secrets.toml
+```
 
-GOOGLE_API_KEY = "your-api-key-here"
+Add:
 
-2.Run the Streamlit App
+```toml
+GOOGLE_API_KEY = "your-gemini-api-key"
+```
 
+---
+
+## Run Application
+
+```bash
 streamlit run app.py --server.port 8501 --server.enableCORS false
-_
+```
+
+Application URL:
+
+```text
+http://<EC2-Public-IP>:8501
+```
+
+Example:
+
+```text
+http://52.xxx.xxx.xxx:8501
+```
+
+---
+
+## Project Structure
+
+```text
+ATS_Gemini_Pro/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+│
+├── .streamlit/
+│   ├── config.toml
+│   └── secrets.toml
+│
+├── reports/
+├── logs/
+└── assets/
+```
+
+---
+
+## Security Best Practices
+
+Never commit:
+
+```text
+.streamlit/secrets.toml
+```
+
+Add the following to `.gitignore`:
+
+```text
+.streamlit/secrets.toml
+__pycache__/
+*.pyc
+venv/
+.env
+```
+
+---
+
+## Future Enhancements
+
+* Resume Optimization Engine
+* Multi-Resume Comparison
+* Job Recommendation Engine
+* LinkedIn Profile Analysis
+* Dashboard Analytics
+* Docker Deployment
+* CI/CD Pipeline Integration
+* AWS ECS Deployment
+
+---
+
+## Technology Stack
+
+* Python
+* Streamlit
+* Google Gemini 2.5 Flash
+* PyMuPDF
+* ReportLab
+* AWS EC2
+* Git & GitHub
+
+---
+
+## Author
+
+Aman Agarwal
+
+AWS | DevOps | Data Engineering | AI Automation
+
+---
+
+## License
+
+This project is licensed under the MIT License.
