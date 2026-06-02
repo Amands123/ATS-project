@@ -1,5 +1,8 @@
 # ATS Gemini Pro 🚀
 
+<img width="1363" height="540" alt="image" src="https://github.com/user-attachments/assets/3834b12f-4280-49ed-a5d3-00f280d7b907" />
+
+
 ATS Gemini Pro is an AI-powered Applicant Tracking System (ATS) Resume Analyzer built using Streamlit and Google Gemini AI. The application helps job seekers evaluate their resumes against job descriptions, identify missing skills and keywords, generate ATS match scores, create cover letters, and prepare for interviews.
 
 ## Features
